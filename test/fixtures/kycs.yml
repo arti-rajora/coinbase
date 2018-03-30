@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aadhar_number: MyString
+  aadhar_front: MyString
+  aadhar_back: MyString
+  pan_card_number: MyString
+  pan_card_image: MyString
+  bank_name: MyString
+  account_number: MyString
+  account_holder_name: MyString
+  mobile_number: MyString
+  branch_name: MyString
+  account_type: MyString
+  ifsc_code: MyString
+  user: one
+
+two:
+  aadhar_number: MyString
+  aadhar_front: MyString
+  aadhar_back: MyString
+  pan_card_number: MyString
+  pan_card_image: MyString
+  bank_name: MyString
+  account_number: MyString
+  account_holder_name: MyString
+  mobile_number: MyString
+  branch_name: MyString
+  account_type: MyString
+  ifsc_code: MyString
+  user: two

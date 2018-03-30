@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  coin: MyString
+  coin_type: MyString
+  qr_code_url: MyString
+  balance: 1.5
+  unit: 1
+  locked_balance: 1.5
+  user: one
+
+two:
+  address: MyString
+  coin: MyString
+  coin_type: MyString
+  qr_code_url: MyString
+  balance: 1.5
+  unit: 1
+  locked_balance: 1.5
+  user: two

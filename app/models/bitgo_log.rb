@@ -1,0 +1,2 @@
+class BitgoLog < ApplicationRecord
+end

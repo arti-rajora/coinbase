@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  ref_id: 1
+  txn_type: MyString
+  transfer_id: MyString
+  wallet: one
+  address: MyString
+  txn_id: MyString
+  currency: MyString
+  amount: 1.5
+  state: false
+  confirmatons: false
+  response: MyText
+
+two:
+  user: two
+  ref_id: 1
+  txn_type: MyString
+  transfer_id: MyString
+  wallet: two
+  address: MyString
+  txn_id: MyString
+  currency: MyString
+  amount: 1.5
+  state: false
+  confirmatons: false
+  response: MyText

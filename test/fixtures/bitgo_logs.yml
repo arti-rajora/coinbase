@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  response: MyText
+  request: MyText
+  url: MyString
+  event: MyString
+  ip_address: MyString
+  method: MyString
+
+two:
+  response: MyText
+  request: MyText
+  url: MyString
+  event: MyString
+  ip_address: MyString
+  method: MyString

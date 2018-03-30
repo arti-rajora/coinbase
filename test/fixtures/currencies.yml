@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  abbr: MyString
+  logo: MyText
+  rate: 1.5
+  status: false
+
+two:
+  name: MyString
+  abbr: MyString
+  logo: MyText
+  rate: 1.5
+  status: false
