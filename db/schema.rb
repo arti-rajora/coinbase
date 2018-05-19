@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328122519) do
+ActiveRecord::Schema.define(version: 20180430093431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.string   "author_type"
+    t.integer  "author_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  end
 
   create_table "bitgo_logs", force: :cascade do |t|
     t.text     "response",   default: ""
@@ -24,6 +55,22 @@ ActiveRecord::Schema.define(version: 20180328122519) do
     t.string   "method",     default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "company"
+    t.text     "message"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "currencies", force: :cascade do |t|
@@ -37,14 +84,25 @@ ActiveRecord::Schema.define(version: 20180328122519) do
   end
 
   create_table "currency_addresses", force: :cascade do |t|
-    t.string   "address_id", default: ""
-    t.string   "address",    default: ""
-    t.text     "response",   default: ""
-    t.boolean  "status",     default: false
+    t.string   "address_id",  default: ""
+    t.string   "address",     default: ""
+    t.text     "response",    default: ""
+    t.boolean  "status",      default: false
     t.integer  "crypto_id"
     t.string   "cryto_type"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "currency_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["currency_id"], name: "index_currency_addresses_on_currency_id", using: :btree
+    t.index ["user_id"], name: "index_currency_addresses_on_user_id", using: :btree
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string   "question"
+    t.text     "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "kycs", force: :cascade do |t|
@@ -64,6 +122,13 @@ ActiveRecord::Schema.define(version: 20180328122519) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["user_id"], name: "index_kycs_on_user_id", using: :btree
+  end
+
+  create_table "staticcontents", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -140,6 +205,8 @@ ActiveRecord::Schema.define(version: 20180328122519) do
     t.index ["user_id"], name: "index_wallets_on_user_id", using: :btree
   end
 
+  add_foreign_key "currency_addresses", "currencies"
+  add_foreign_key "currency_addresses", "users"
   add_foreign_key "kycs", "users"
   add_foreign_key "usertaxes", "users"
   add_foreign_key "usertaxes", "wallets"

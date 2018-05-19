@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  api_version(:module => "V1", :header => {:name => "Accept", :value => "application/www.giltxchange.com; version=1"}) do
+  # api_version(:module => "V1", :header => {:name => "Accept", :value => "application/www.giltxchange.com; version=1"}) do
+  namespace :v1 do
     resources :users ,:only => [:show] do 
       collection  do
         post 'signup'
@@ -13,7 +14,13 @@ Rails.application.routes.draw do
         post 'forgot_password'
       end
     end
-    
+
+    resources :wallets
+    resources :currencies do
+      collection do
+      end
+    end
+
   end
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
