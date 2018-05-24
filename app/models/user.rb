@@ -7,4 +7,25 @@ class User < ApplicationRecord
 	has_one :kyc, dependent: :destroy
 	has_many :usertaxes, dependent: :destroy
 	has_many :wallets, dependent: :destroy
+
+
+    def self.sign_in_from_omniauth(auth)
+   	 find_by(provider: auth['provider'], uid: auth['uid']) || create_user_from_omniauth(auth)
+  	end
+
+  	def self.create_user_from_omniauth(auth)
+  		p"auth===++#{auth.info['email']}"
+  		create!(
+  			email: auth.info['email'],
+  			provider: auth['provider'],
+  			uid: auth['uid'],
+  			profile: auth['avatar_url'],
+  			password: 'password',
+  			password_confirmation: 'password'
+  			)
+  	end
+
+
+
+
 end

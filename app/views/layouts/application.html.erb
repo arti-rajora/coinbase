@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Giltapi</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Heka</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <% if current_user.blank? %>
+      <h1>Please Sign In</h1>
+      <%= link_to 'Sign In with Github', '/auth/github' %>
+      <%= link_to 'Sign In with facebook', '/auth/facebook' %>
+    <% else %>
+      <p>
+        You are signed in as <%= current_user.email %>.  Click the button below to sign out.
+      </p>
+      <%= button_to "Sign Out", signout_path, method: :delete %>
+    <% end %>
+    <%= render 'common/header' %>
+    <%= yield %>
+    <%= render 'common/footer' %>
+  </body>
 </html>

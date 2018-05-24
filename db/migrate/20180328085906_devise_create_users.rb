@@ -26,11 +26,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :auth_enabled, default: false
       t.string :auth_code_url, default: ''
       t.string :dob, default: ''
-
-
-
-
-
+      t.string :uid, default: ''
+      t.string :oauth_token, default: ''
+      t.string :provider, default: ''
 
       ## Recoverable
       t.string   :reset_password_token

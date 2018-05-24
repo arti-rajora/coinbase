@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  
+resource :home, only: [:show]
+
+  root to: "home#index"
+  get 'home/show'
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  delete 'signout', to: 'sessions#destroy', as: 'signout'
 
   # api_version(:module => "V1", :header => {:name => "Accept", :value => "application/www.giltxchange.com; version=1"}) do
   namespace :v1 do
@@ -15,6 +24,8 @@ Rails.application.routes.draw do
       end
     end
 
+  # get "/auth/:provider/callback", to: "users#login_with_social_auth"
+    
     resources :wallets
     resources :currencies do
       collection do

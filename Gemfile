@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'devise'
+# Use Omniauth Facebook plugin
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'carrierwave'
@@ -44,6 +46,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'dotenv', '~> 2.2.1'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -52,3 +55,8 @@ group :development do
 end
 
 gem 'cryptopia'
+
+
+#social login
+gem 'omniauth-facebook'
+gem 'omniauth-github'

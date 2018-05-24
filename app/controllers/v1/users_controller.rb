@@ -1,5 +1,31 @@
 class V1::UsersController < V1::BaseController
 
+	def login_with_social_auth
+		
+		user = User.from_omniauth(request.env["omniauth.auth"])
+	    if user.valid?
+	      u = User.find_by(email: user.email)
+	      if !u.present?
+	      	User.create(username: user.username,
+	      	avatar_url: user.avatar_url,
+	      	email: user.email,
+	      	uid: user.uid,
+	      	provider: user.provider,
+	      	oauth_token: user.oauth_token)
+	      end
+	      session[:user_id] = user.id
+	      redirect_to request.env['omniauth.origin']
+	    end
+	end
+
+	def destroy
+		binding.pry
+		
+	    session[:user_id] = nil
+	    session[:omniauth] = nil
+	    redirect_to root_url
+  	end
+
 	def login
 		user = User.find_by(:email => params[:username].downcase().strip())
 		unless user
